@@ -1,0 +1,16 @@
+#foto{
+    width: 50%;
+    height: 50%;
+}
+body{
+    background-color: bisque;   
+}
+section#estudios{
+    border: solid 1px black;
+}
+section#laboral{
+    border: solid 1px black;
+}
+section#otros{
+    border: solid 1px black;
+}
