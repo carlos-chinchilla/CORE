@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script>
+
+            // OBTENCION NUMERO EN PANTALLA, VACIAR Y PINTAR
+            const numero = () => Number(document.getElementById("pantalla").value);
+            const vaciar = () => document.getElementById("pantalla").value="";
+            const pinta = (n) => document.getElementById("pantalla").value=n;
+
+
+            // OPERACIONES UNITARIAS
+            
+            const sq = () => {
+                if(!valida()) return;
+                let x = numero();
+                vaciar();
+                pinta(x*x);
+                rellenar_info();
+            }
+
+            const fact = () => {
+                if(!valida()) return;
+                let factorial = numero();
+                vaciar();
+                for(i=(factorial-1);i>0;i--){
+                    factorial=factorial*i;
+                }
+                pinta(factorial);
+                rellenar_info();
+            }
+
+            // OPERACIONES BINARIAS
+            let acumulador = 0;
+            let operador = "";
+
+            const add = () => {
+                if(!valida()) return;
+                operador="+";
+                acumulador=numero();
+                vaciar();
+            }
+
+            const sub = () => {
+                if(!valida()) return;
+                operador="-";
+                acumulador=numero();
+                vaciar();
+            }
+
+            const mul = () => {
+                if(!valida()) return;
+                operador="*";
+                acumulador=numero();
+                vaciar();
+            }
+
+            const div = () => {
+                if(!valida()) return;
+                operador="/";
+                acumulador=numero();
+                vaciar();
+            }
+
+            const eq = () => {
+                if(!valida()) return;
+                let n = numero();
+                switch (operador) {
+                    case "":
+                    acumulador=n;
+                    break;
+                    case "*":
+                    acumulador *= n;
+                    break;
+                    case "+":
+                    acumulador += n;
+                    break;
+                    case "-":
+                    acumulador -= n;
+                    break;
+                    case "/":
+                    acumulador /= n;
+                    break;
+                }
+                pinta(acumulador);
+                rellenar_info();
+            }
+
+            function valida(){
+                if (Number.isNaN(numero())){
+                    pinta("Error");
+                } else{
+                    return true;
+      }
+            }
+            function rellenar_info(){
+                let n = numero();
+                if (n<100){
+                    mensage=document.getElementById("info").innerHTML="Info: El resultado es menor que 100";
+                } else if ( n>=100 && n<=200) {
+                    mensage=document.getElementById("info").innerHTML="Info: El resultado está entre 100 y 200";
+                } else { 
+                    mensage=document.getElementById("info").innerHTML="Info: El resultado es superior a 200";
+                }
+                document.getElementById("info").innerHTML=mensage;
+            }
+        </script>
+
+    </head>
+    <body>
+        <h2 class="cabecera">Calculadora de CORE</h2>
+        <input type="text" id="pantalla">
+
+        <div>
+            <h3>Operaciones unitarias</h3>
+            <button id="cuadrado" onclick="sq()">x^2</button>
+            <button id="factorial" onclick="fact()">x!</button>
+        </div>
+        <div>
+            <h3>Operaciones binarias</h3>
+            <button id="suma" onclick="add()">+</button>
+            <button id="resta" onclick="sub()">-</button>
+            <button id="multiplicacion" onclick="mul()">*</button>
+            <button id="division" onclick="div()">/</button>
+            <button id="igual" onclick="eq()">=</button>
+        </div>
+        <h2 id="info" class="grande" title="Info sobre el número" >Info sobre el número</h2>
+    </body>
+</html>    
